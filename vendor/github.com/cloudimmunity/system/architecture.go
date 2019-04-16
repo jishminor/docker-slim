@@ -8,6 +8,7 @@ const (
 	ArchName386         ArchName = "386"
 	ArchNameAmd64       ArchName = "amd64"
 	ArchNameArm32       ArchName = "armhf"
+	ArchNameArm64       ArchName = "aarch64"
 )
 
 type MachineName string
@@ -59,6 +60,12 @@ var ArmFamily32Arch = ArchInfo{
 	Bits:   ArchBits32,
 }
 
+var ArmFamily64Arch = ArchInfo{
+	Name:   ArchNameArm64,
+	Family: ArchFamilyArm,
+	Bits:   ArchBits64,
+}
+
 var unsupportedArch = ArchInfo{
 	Name: ArchNameUnsupported,
 }
@@ -73,7 +80,7 @@ var archMap = map[MachineName]*ArchInfo{
 	MachineNameNamei686:   &x86Family32Arch,
 	MachineNameNamex86_64: &x86Family64Arch,
 	MachineNameNameArm:    &ArmFamily32Arch,
-	MachineNameNameArm64:  &unsupportedArch,
+	MachineNameNameArm64:  &ArmFamily64Arch,
 }
 
 func MachineToArchName(mtype string) ArchName {
